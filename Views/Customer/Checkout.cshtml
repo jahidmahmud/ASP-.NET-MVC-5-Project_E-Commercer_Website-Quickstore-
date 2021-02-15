@@ -1,0 +1,67 @@
+﻿@using OnlineShopProject.Models;
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Cart</h2>
+@if (Session["cart"] == null)
+{
+    <div>
+        <div class="p-5 alert alert-danger alert-dismissible">
+            <strong>No product added to cart!</strong>
+        </div>
+    </div>
+
+}
+else
+{
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover text-center" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Quantity</th>
+                        <th>Manage</th>
+                        <th>Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Item item in (List<Item>)Session["cart"])
+                    {
+                    <tr>
+                        <td>@item.Product.ProductName</td>
+                        <td><img src="@Url.Content(@item.Product.ProductImage)" alt="Product Image" width="100" height="100" style="border-radius:50%;" /></td>
+                        <td>@item.Quantity</td>
+                        <td>
+                            <a href="@Url.Action("Add","Customer", new { id = item.Product.ProductId})">
+                                <i class="fa fa-plus fa-2x text-success"></i>
+                            </a>
+                            <a href="@Url.Action("DecreaseQty","Customer", new { productId = item.Product.ProductId })">
+                                <i class="fas fa-minus fa-2x text-danger ml-2"></i>
+                            </a>
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("UpdateQuanttity", "Customer", new { id = item.Product.ProductId }, FormMethod.Post))
+                            {
+                                <input type="number" name="quantity" min="1" value="@item.Quantity" />
+                                <button type="submit" class="ml-2 btn btn-primary"><i class="fas fa-sync "></i></button>
+                            }
+
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center align-items-center ">
+                <a href="@Url.Action("CheckoutDetails","Customer")" class="btn btn-success p-2 pl-5 pr-5 rounded-left rounded-right">
+                Checkout Details
+                </a>
+            </div>
+        </div>
+    </div>
+}

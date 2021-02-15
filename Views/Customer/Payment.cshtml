@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<div class="p-5">
+    <div class="justify-content-center">
+        <h2 class="text-primary text-center">Payment</h2><br />
+
+        @using (Html.BeginForm("Payment", "Customer", FormMethod.Post))
+        {
+            <div class="col-md-6 mx-auto">
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" class="form-control" required name="address" placeholder="Enter your address">
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" required name="city" placeholder="Enter your City">
+                </div>
+                <div class="form-group">
+                    <label>State</label>
+                    <input type="text" class="form-control" required name="state" placeholder="Enter your state">
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" class="form-control" required name="country" placeholder="Enter your country">
+                </div>
+                <div class="form-group">
+                    <label>Zip</label>
+                    <input type="text" class="form-control" required name="zip" placeholder="Zip code">
+                </div>
+                <div class="form-group">
+                    <label>Card No</label>
+                    <input type="text" name="cardno" class="form-control" required placeholder="Enter card no" />
+                </div>
+
+                <div class="form-group">
+                    <label>Card Name</label>
+                    <input type="text" class="form-control" required name="chname" placeholder="Enter your card Card Name">
+                </div>
+                <div class="form-group">
+                    <label>Card Provider</label>
+                    <select name="cardProvider" class="form-control" required id="exampleFormControlSelect1">
+                        <option value="DBBL">DBBL</option>
+                        <option value="Brac Bank">Brac Bank</option>
+                        <option value="Maestro">Maestro </option>
+                        <option value="Contactless">Contactless </option>
+                        <option value="paypal">paypal</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Exp Date</label>
+                    <input type="date" class="form-control btn-block" required name="expdate">
+                </div>
+
+                <input type="submit" class="btn btn-success p-2" value="Place Order" />
+            </div>
+
+        }
+    </div>
+</div>
+
+
+
+
+
+
+@*@model IEnumerable<OnlineShopProject.Models.ShippingDetails>
+
+    @{
+        ViewBag.Title = "Payment";
+        Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    }
+
+    <h2>Payment</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreditCardNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.Username)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountPaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditCardNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.Username)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ShippingDetailId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ShippingDetailId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ShippingDetailId })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

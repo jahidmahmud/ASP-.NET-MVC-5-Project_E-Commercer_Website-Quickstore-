@@ -1,0 +1,135 @@
+﻿@model OnlineShopProject.Models.Product
+
+@{
+    ViewBag.Title = "ProductEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <h4>Product</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ProductId, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Category.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select name="CategoryId" class="form-control" required>
+                            @foreach (var item in ViewData["categories"] as List<OnlineShopProject.Models.Category>)
+                            {
+                                if (item.CategoryId == Model.CategoryId)
+                                {
+                                    <option value="@item.CategoryId" selected>@item.CategoryName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.CategoryId">@item.CategoryName</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsDelete, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.IsDelete, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                        @Html.ValidationMessageFor(model => model.IsDelete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>@*
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ModifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ModifiedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ModifiedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
+            <div class="col-md-10">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        <input type="file" name="file" id="file" required style="width: 100%;" />
+                        @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsFeatured, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.IsFeatured, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.IsFeatured, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10 d-flex justify-content-center">
+                        <input type="submit" value="Update" class="btn btn-success rounded" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

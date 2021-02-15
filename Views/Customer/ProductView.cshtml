@@ -1,0 +1,108 @@
+﻿@model OnlineShopProject.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">Woolen T-Shirt</h1>
+                </div><!-- /.page-title-heading -->
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li>Details</li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+@*@foreach (var item in Model)
+    {*@
+<section class="flat-row main-shop shop-detail style-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="wrap-flexslider">
+                    <div class="inner padding-top-5">
+                        <div class="flexslider style-2 has-relative">
+                            <ul class="slides">
+                                <li data-thumb="@Url.Content(Model.ProductImage)">
+                                    <img src="@Url.Content(Model.ProductImage)" alt="Image">
+                                    <div class="flat-icon style-1">
+                                        <a href="@Url.Content(Model.ProductImage)" class="zoom-popup"><span class="fa fa-search-plus"></span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div><!-- /.flexslider -->
+                    </div>
+                </div>
+            </div><!-- /.col-md-6 -->
+
+            <div class="col-md-6">
+                <div class="divider h0"></div>
+                <div class="product-detail">
+                    <div class="inner">
+                        <div class="content-detail">
+                            <h2 class="product-title">@Model.ProductName</h2>
+                            <div class="flat-star style-1">
+                                @*<i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                    <span>(1)</span>*@
+                            </div>
+                            <p>@Model.LongDescrib</p>
+                            <div class="product-quantity margin-top-44">
+                                <div class="quantity">
+                                    @*<input type="text" value="1" name="quantity-number" class="quantity-number">
+                                        <span class="inc quantity-button">+</span>
+                                        <span class="dec quantity-button">-</span>*@
+                                </div>
+                                @using (Html.BeginForm("AddToCart", "Customer", new { id = Model.ProductId }, FormMethod.Post))
+                                {
+                                    <div class="add-to-cart">
+                                        <input type="submit" name="name" value="Add To Chart" />
+                                    </div>
+                                }
+
+                                <div class="box-like">
+                                    <a href="@Url.Action("AddToWishlist","Customer", new { id = Model.ProductId })" class="like"><i class="fa fa-heart-o"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-categories margin-top-22">
+                                @*
+                                    <span>Categories: </span><a href="#">Men,</a> <a href="#">Shoes</a>*@
+                        </div>
+                        @*<div class="product-tags">
+                                <span>Tags: </span><a href="#">Dress,</a> <a href="#">Fashion,</a> <a href="#">Furniture,</a> <a href="#">Lookbok</a>
+                            </div>*@
+                        <ul class="flat-socials margin-top-15">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /.product-detail -->
+        </div>
+    </div><!-- /.row -->
+</div><!-- /.container -->
+</section><!-- /.flat-row -->
+@*}*@
+
+
+
+
+
+

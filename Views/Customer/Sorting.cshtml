@@ -1,0 +1,186 @@
+﻿@model IEnumerable<OnlineShopProject.Models.Product>
+
+@{
+    ViewBag.Title = "Sorting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">@ViewBag.Title</h1>
+                </div><!-- /.page-title-heading -->
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Customer")">Home</a></li>
+                        <li>@ViewBag.Title</li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+<!-- Blog posts -->
+<section class="flat-row row-product-new">
+    <div class="container">
+        <div class="">
+            <div class="">
+                <div class="title-section margin-bottom-5">
+                    <h2 class="title">
+                        Men's Collection
+                    </h2>
+                </div>
+                <div class="product-content product-fourcolumn clearfix" style="display:flex;flex-wrap:wrap">
+                    @foreach (var item in Model)
+                    {
+                        <ul class="product style2 clearfix col-md-4">
+                            <li class="product-item" style="min-width:85%;">
+                                <div class="product-thumb clearfix">
+                                    <a href="#" class="product-thumb">
+                                        <img src="@Url.Content(@item.ProductImage)" alt="image" />
+                                    </a>
+                                    <span class="new">New</span>
+                                </div>
+                                <div class="product-info text-center clearfix">
+                                    <span class="product-title">@item.Description</span>
+                                    <div class="price">
+                                        <ins>
+                                            <span class="amount">৳&nbsp;@item.Price.ToString()</span>
+                                        </ins>
+                                    </div>
+                                    <ul class="flat-color-list width-14">
+                                        @using (Html.BeginForm("ProductView", "Customer", new { id = item.ProductId }, FormMethod.Post))
+                                        {
+                                            <input type="submit" value="View" class="view" style="border: 0px;padding:4px 20px;" />
+                                        }
+                                    </ul>
+                                </div>
+                                @using (Html.BeginForm("AddToCart", "Customer", new { id = item.ProductId }, FormMethod.Post))
+                                {
+                                    <div class="add-to-cart text-center">
+                                        <input type="submit" value="ADD TO CART">
+                                    </div>
+                                }
+                                <a href="@Url.Action("AddToWishlist","Customer", new { id = item.ProductId })" class="like"><i class="fa fa-heart-o"></i></a>
+                            </li>
+
+
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+
+
+
+
+
+
+
+
+@*<h2>Sorting</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDelete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsFeatured)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sorting.Sname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sorting1.Sname)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsFeatured)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sorting.Sname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sorting1.Sname)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OnlineShopProject.Models.SlideImage>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@{int counts = 1; }
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Slider
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Title</th>
+                        <th>Message</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@counts</td>
+                            <td>@item.SlideTitle</td>
+                            <td>@item.SlideCollection</td>
+                            <td>@item.SlideImage1</td>
+                            <td>
+                                @Html.ActionLink(" ", "Edit", "Slider", new { id = item.SlideId }, new { @class = "btn text-info fa fa-pencil-alt" })
+                            </td>
+                        </tr>
+                        counts++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

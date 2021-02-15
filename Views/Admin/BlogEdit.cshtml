@@ -1,0 +1,86 @@
+﻿@model OnlineShopProject.Models.Blogging
+
+@{
+    ViewBag.Title = "BlogEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>BlogEdit</h2>
+
+@using (Html.BeginForm("BlogEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Blogging</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.BlogId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShortHeading, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ShortHeading, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.ShortHeading, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlogHeading, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BlogHeading, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.BlogHeading, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LongDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LongDescription, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.LongDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlogImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" id="file" required style="width: 100%;" />
+                @Html.ValidationMessageFor(model => model.BlogImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PostedOn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PostedOn, new { htmlAttributes = new { @class = "form-control", required = "required", autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.PostedOn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

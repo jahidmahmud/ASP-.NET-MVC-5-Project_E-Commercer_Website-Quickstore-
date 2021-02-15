@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OnlineShopProject.Models.Users>
+
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Settings</h2>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            @using (Html.BeginForm("Settings", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" value="@Session["Username"]">
+                </div>
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" class="form-control" value="@Session["Email"]" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Account Created</label>
+                    <input type="text" class="form-control" value="@Session["Created"]" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Last Modified</label>
+                    <input type="text" class="form-control" value="@Session["Modified"]" readonly>
+                </div>
+                <br />
+                <input type="Submit" name="name" value="Update" class="btn btn-success" />
+            }
+            </div>
+    </div>
+</div>
+

@@ -1,0 +1,69 @@
+﻿@using OnlineShopProject.Models;
+@{
+    ViewBag.Title = "CheckoutDetails";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<h2>Checkout</h2>
+@{
+    int Total = 0;
+}
+@if (Session["cart"] == null)
+{
+    <div class="alert alert-danger">
+        <strong>No product added to cart!</strong>
+    </div>
+
+}
+else
+{
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table  table-hover text-center" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Sub Total</th>
+                        <th>Tax(15%)</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (Item item in (List<Item>)Session["cart"])
+                    {
+                        int lineTotal = Convert.ToInt32(item.Quantity * item.Product.Price);
+                        int tax = Convert.ToInt32(lineTotal * 0.15);
+                        int vatTotal = Convert.ToInt32(lineTotal + lineTotal * 0.15);
+                        Total = Convert.ToInt32(Total + vatTotal);
+                        
+                        Session["total"] = Total;
+                        
+                        <tr>
+                            <td>@item.Product.ProductName</td>
+                            <td>@item.Product.Price</td>
+                            <td>@item.Quantity</td>
+                            <td>@lineTotal</td>
+                            <td>@tax</td>
+                            <td>@vatTotal</td>
+                        </tr>
+                    }
+
+                    <tr>
+                        <td colspan="6" class="text-dark"><b>Total: @Total &nbsp<span style="font-size:25px;font-weight:bold;">৳</span></b></td>
+                    </tr>
+                </tbody>
+                
+            </table>
+
+            <div class="d-flex justify-content-center align-items-center ">
+                @* <button class="btn btn-success p-2 pl-5 pr-5 rounded-left rounded-right">Payment</button>*@
+                <a class="btn btn-success" href="@Url.Action("Payment","Customer")">Payment =></a>
+            </div>
+        </div>
+    </div>
+
+}

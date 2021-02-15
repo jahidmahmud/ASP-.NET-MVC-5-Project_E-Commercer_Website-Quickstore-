@@ -1,0 +1,58 @@
+﻿@model IEnumerable<OnlineShopProject.Models.ShippingDetails>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between">
+                <h1 class="mt-4">Dashboard</h1>
+
+            </div>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Your Order History
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Zip</th>
+                                    <th>Country</th>
+                                    <th>Paid Amount</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Adress</td>
+                                        <td>@item.City</td>
+                                        <td>@item.State</td>
+                                        <td>@item.ZipCode</td>
+                                        <td>@item.Country</td>
+                                        <td>@item.AmountPaid</td>
+                                        <td>@item.PaymentDate</td>
+                                    </tr>
+                                 }
+                                    
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
